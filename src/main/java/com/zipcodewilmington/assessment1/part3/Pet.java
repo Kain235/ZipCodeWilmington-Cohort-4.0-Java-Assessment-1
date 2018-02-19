@@ -1,5 +1,7 @@
 package com.zipcodewilmington.assessment1.part3;
 
+import sun.security.krb5.internal.PAEncTSEnc;
+
 /**
  * Created by leon on 2/16/18.
  */
@@ -11,6 +13,7 @@ public abstract class Pet implements Animal {
 
     protected String name = "";
     protected int age = 0;
+    protected PetOwner owner;
 
     public Pet() {
     }
@@ -60,12 +63,15 @@ public abstract class Pet implements Animal {
      * ensure this instance of `Pet` is added to the owner's composite `pets` list
      */
     public void setOwner(PetOwner newPetOwner) {
+        newPetOwner.addPet(this);
+        this.owner = newPetOwner;
     }
 
     /**
      * @return PetOwner object whose composite `pets` collection contains this Pet instance
      */
     public PetOwner getOwner() {
-        return null;
+
+        return this.owner;
     }
 }

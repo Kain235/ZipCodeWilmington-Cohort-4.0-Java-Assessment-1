@@ -39,8 +39,13 @@ public class StringUtilsTest {
     @Test
     public void reverseFirstWordTest() {
         // Given
+
         String inputString = "noeL Hunter";
         String expected = "Leon";
+
+//        String inputString = "Noel Hunter";
+//        String expected = "leoN";
+
 
         // When
         String actual = StringUtils.reverseFirstWord(inputString);

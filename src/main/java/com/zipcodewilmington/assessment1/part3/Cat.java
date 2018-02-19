@@ -20,6 +20,7 @@ public class Cat extends Pet {
      */
     public Cat(Integer age) {
         this.age = age;
+        this.name = "Cat name";
 
     }
 
