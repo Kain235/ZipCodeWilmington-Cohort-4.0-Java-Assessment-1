@@ -1,5 +1,10 @@
 package com.zipcodewilmington.assessment1.part2;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 /**
  * Created by leon on 2/16/18.
  */
@@ -11,7 +16,14 @@ public class ArrayUtils {
      * Given an array of objects, named `objectArray`, and an object `objectToCount`, return the number of times the `objectToCount` appears in the `objectArray`
      */
     public static Integer getNumberOfOccurrences(Object[] objectArray, Object objectToCount) {
-        return null;
+        int count = 0;
+        for (Object object : objectArray) {
+            if (object.equals(objectToCount)) {
+                count++;
+            }
+
+        }
+        return count;
     }
 
     /**
@@ -21,6 +33,18 @@ public class ArrayUtils {
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
     public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
+//        int count = 0;
+//        for (Object object : objectArray) {
+//            if (object.equals(objectToRemove)) {
+//                Object placeHolder = objectArray[objectArray.length - 1];
+//                objectArray[objectArray.length - 1] = objectArray[count];
+//                objectArray[count] = placeHolder;
+//                objectArray = Arrays.copyOf(objectArray, objectArray.length - 1);
+//            }
+//            count++;
+//            System.out.println(Arrays.toString(objectArray));
+//        }
+
         return null;
     }
 
@@ -30,6 +54,16 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the most frequently occuring object in the array
      */
     public static Object getMostCommon(Object[] objectArray) {
+        HashMap<Object, Integer> listOfOccurances = new HashMap();
+        for (int i = 0; i < objectArray.length; i++) {
+            if (listOfOccurances.containsKey(objectArray[i])) {
+                int value = listOfOccurances.get(objectArray[i]);
+                value++;
+                listOfOccurances.put(objectArray[i], value);
+            } else {
+                listOfOccurances.put(objectArray[i], 1);
+            }
+        }
         return null;
     }
 
