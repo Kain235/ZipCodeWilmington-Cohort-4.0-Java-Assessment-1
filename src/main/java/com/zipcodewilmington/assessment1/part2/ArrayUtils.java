@@ -32,20 +32,21 @@ public class ArrayUtils {
      * @return an array with identical content excluding the specified `objectToRemove`
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
-    public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
-//        int count = 0;
-//        for (Object object : objectArray) {
-//            if (object.equals(objectToRemove)) {
-//                Object placeHolder = objectArray[objectArray.length - 1];
-//                objectArray[objectArray.length - 1] = objectArray[count];
-//                objectArray[count] = placeHolder;
-//                objectArray = Arrays.copyOf(objectArray, objectArray.length - 1);
-//            }
-//            count++;
-//            System.out.println(Arrays.toString(objectArray));
-//        }
+    public static Object[] removeValue(Object[] objectArray, Object objectToRemove){
+        for (int i = 0; i < objectArray.length; i++) {
+            if (objectArray[i].equals(objectToRemove)) {
+                for (int j = i + 1; j <objectArray.length; j++) {
+                    int duplicateI = i;
+                    objectArray[duplicateI] = objectArray[j];
+                    duplicateI++;
 
-        return null;
+                }
+                objectArray = Arrays.copyOf(objectArray, objectArray.length - 1);
+                i--;
+            }
+        }
+
+        return objectArray;
     }
 
     /**
@@ -54,17 +55,24 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the most frequently occuring object in the array
      */
     public static Object getMostCommon(Object[] objectArray) {
-        HashMap<Object, Integer> listOfOccurances = new HashMap();
-        for (int i = 0; i < objectArray.length; i++) {
-            if (listOfOccurances.containsKey(objectArray[i])) {
-                int value = listOfOccurances.get(objectArray[i]);
-                value++;
-                listOfOccurances.put(objectArray[i], value);
-            } else {
-                listOfOccurances.put(objectArray[i], 1);
+        Object mostCommon = null;
+        int mostCommonCount = 0;
+        for (Object object: objectArray) {
+            int count = 0;
+            for (Object object2: objectArray) {
+                if (object.equals(object2)) {
+                    count++;
+
+                }
+
             }
+            if (count > mostCommonCount) {
+                mostCommon = object;
+                mostCommonCount = count;
+            }
+
         }
-        return null;
+        return mostCommon;
     }
 
 
@@ -74,7 +82,25 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the least frequently occuring object in the array
      */
     public static Object getLeastCommon(Object[] objectArray) {
-        return null;
+        Object leastCommon = null;
+        int leastCommonCount = 100;
+        for (Object object: objectArray) {
+            int count = 0;
+            for (Object object2: objectArray) {
+                if (object.equals(object2)) {
+                    count++;
+
+                    }
+
+                }
+            if (count < leastCommonCount) {
+                leastCommon = object;
+                leastCommonCount = count;
+
+            }
+
+        }
+        return leastCommon;
     }
 
     /**
@@ -84,6 +110,13 @@ public class ArrayUtils {
      * given two arrays `objectArray` and `objectArrayToAdd`, return an array containing all elements in `objectArray` and `objectArrayToAdd`
      */
     public static Object[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
-        return null;
+        int originalLength = objectArray.length;
+        Object[] newArray = Arrays.copyOf(objectArray, objectArray.length + objectArrayToAdd.length);
+        int count = 0;
+        for (int i = originalLength; i < newArray.length; i++) {
+            newArray[i] = objectArrayToAdd[count];
+            count++;
+        }
+        return newArray;
     }
 }

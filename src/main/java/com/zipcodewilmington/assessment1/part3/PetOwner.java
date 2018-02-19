@@ -18,6 +18,11 @@ public class PetOwner {
     public PetOwner(String name, Pet... pets) {
         this.name = name;
         this.pets = pets;
+        if (pets != null) {
+            for (Pet pet : pets) {
+                pet.setOwner(this);
+            }
+        }
     }
 
     /**
@@ -25,12 +30,13 @@ public class PetOwner {
      */
     public void addPet(Pet pet) {
         ArrayList<Pet> petsList;
-        if (this.pets != null ) {
+        if (this.pets != null) {
             petsList = new ArrayList<>(Arrays.asList(this.pets));
         } else {
             petsList = new ArrayList<>();
         }
         petsList.add(pet);
+        pet.setOwner(this);
         this.pets = petsList.toArray(new Pet[petsList.size()]);
 
     }
@@ -39,11 +45,11 @@ public class PetOwner {
      * @param pet pet to be removed from the composite collection Pets
      */
     public void removePet(Pet pet) {
-       for (int i = 0; i < this.pets.length; i++) {
-           if (this.pets[i].equals(pet)) {
-               this.pets[i] = null;
-           }
-       }
+        for (int i = 0; i < this.pets.length; i++) {
+            if (this.pets[i].equals(pet)) {
+                this.pets[i] = null;
+            }
+        }
     }
 
     /**
@@ -96,7 +102,7 @@ public class PetOwner {
      */
     public Float getAveragePetAge() {
         int sumOfAge = 0;
-        for (Pet pet: this.pets) {
+        for (Pet pet : this.pets) {
             sumOfAge += pet.getAge();
         }
 
